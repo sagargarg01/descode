@@ -1,0 +1,37 @@
+li{
+    list-style: none;
+    margin-top: 10px;
+    
+    .post{
+        max-width: 550px;
+    }
+
+    .dropdown-toggle::after {
+        content: none;
+        display: none;
+    }
+
+    .small{
+        font-size: x-small !important;
+    }
+
+    .card-post{
+        padding-bottom:10px !important;
+        padding-top:10px !important;
+
+        .comments{
+            float: right;
+            margin-right: 10px;
+        }
+    }
+}
+
+
+
+@media only screen and (max-width: 320px) {
+
+   .email{
+       font-size: small;
+   }
+
+}

@@ -1,0 +1,26 @@
+<footer>
+
+    <% if(locals.user){ %>
+    <div class="top"></div>
+    <% } %>
+
+    <div class="inner">
+        <div class="copy">
+            My Web Development Project
+        </div>
+
+        <div class="container-footer">
+            <div class="home">
+                <a href="/"> Home </a>
+            </div>
+            <% if(locals.user){ %>
+            <div class="profile">
+                <a href="/users/profile/<%= locals.user.id %>"> Profile </a>
+            </div>
+            <% } %>
+
+        </div>
+    </div>
+
+
+</footer>

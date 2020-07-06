@@ -1,0 +1,53 @@
+
+<link href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.css" type="text/css"
+rel="stylesheet">
+<link rel="stylesheet" href="<%= assetPath('css/messages.css') %>">
+
+<div class="container">
+<div class="messaging">
+   <div class="inbox_msg" id="user-chat-box">
+      <div class="inbox_people">
+         <div class="headind_srch">
+            <div class="recent_heading">
+               <h4>ChatRooms</h4>
+            </div>
+         </div>
+         <div class="inbox_chat">
+            <div class="chat_list active_chat">
+               <div class="chat_people">
+                  <div> <img src="https://ptetutorials.com/images/user-profile.png" alt="sunil">
+                  </div>
+                  <div class="chat_ib">
+                     <h5>Common Chat Room</h5>
+                  </div>
+               </div>
+            </div>
+           
+         </div>
+      </div>
+
+
+      <div class="mesgs">
+         <div class="msg_history" id="chat-messages-list">
+            <div class="incoming_msg"></div>   
+            <div class="outgoing_msg"></div>
+         </div>
+         <div class="type_msg">
+            <div class="input_msg_write">
+               <input type="text" id="chat-message-input" class="write_msg" placeholder="Type a message" />
+               <button class="msg_send_btn" id="send-message" type="submit"><i class="fa fa-paper-plane-o"
+                     aria-hidden="true"></i></button>
+            </div>
+         </div>
+      </div>
+   </div>
+
+</div>
+</div>
+
+<script src="https://cdnjs.cloudflare.com/ajax/libs/socket.io/2.3.0/socket.io.js"></script>
+<script src="<%= assetPath('js/chat_engine.js') %>"></script>
+
+<script>
+new chatEngine('user-chat-box', '<%= locals.user.email %>')
+</script>

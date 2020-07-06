@@ -1,0 +1,59 @@
+#layout-main {
+  background-color: #eeeeee; }
+
+.cont-noti {
+  padding-top: 30px; }
+  .cont-noti #notification {
+    display: none;
+    margin: auto;
+    width: 50%;
+    border: 1px solig lightgray;
+    background-color: #f8bfbf;
+    border-radius: 20px; }
+    .cont-noti #notification .card-title {
+      font-size: small; }
+
+.container {
+  padding-top: 10%; }
+  .container .card {
+    border: 1px solid lightgray;
+    margin: auto !important;
+    width: 600px;
+    height: 300px; }
+    .container .card .card-title {
+      padding-bottom: 10px;
+      border-bottom: 1px solid lightgray; }
+    .container .card .name {
+      margin-top: 10px;
+      font-size: large;
+      text-align: center; }
+    .container .card .button {
+      width: 95%;
+      position: absolute;
+      bottom: 30px;
+      left: 10px;
+      border-top: 1px solid lightgray; }
+      .container .card .button div {
+        position: absolute;
+        right: 0px;
+        top: 5px; }
+      .container .card .button button {
+        text-transform: capitalize;
+        padding: 4px 10px 4px 10px;
+        font-weight: bold;
+        border: none;
+        border: 1px solid lightgray;
+        border-radius: 3px; }
+      .container .card .button button:hover {
+        cursor: pointer; }
+      .container .card .button button:focus {
+        outline: none; }
+      .container .card .button .send_email {
+        background-color: #0c0c9c;
+        color: white; }
+
+@media only screen and (max-width: 420px) {
+  .card {
+    width: 95vw !important; }
+  .rounded {
+    padding-top: 20px !important; } }

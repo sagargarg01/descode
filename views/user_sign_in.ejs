@@ -1,0 +1,64 @@
+<link href="//maxcdn.bootstrapcdn.com/bootstrap/4.1.1/css/bootstrap.min.css" rel="stylesheet" id="bootstrap-css">
+<script src="//maxcdn.bootstrapcdn.com/bootstrap/4.1.1/js/bootstrap.min.js"></script>
+<script src="//cdnjs.cloudflare.com/ajax/libs/jquery/3.2.1/jquery.min.js"></script>
+
+<link rel="stylesheet" href="<%= assetPath('css/sign_in.css') %>">
+
+<div class="container-signIn login-container">
+    <div class="row">
+        <div class="login-form">
+
+            <h1>Sign In</h1>
+
+            <form action="/users/create-session" method="POST">
+                <div class="form-group">
+                    <input type="email" class="form-control" name="email" placeholder="Email Or Username" required>
+                </div>
+                <div class="form-group">
+                    <input type="password" class="form-control" name="password" placeholder="Enter Password" required>
+                </div>
+                <div class="form-group">
+                    <input type="submit" class="btnsubmit" value="Sign-In">
+                </div>
+                <div class="form-group">
+                    <a href="/users/forgot_password" class="btnForgetPwd">Forget Password</a>
+                </div>
+
+                <div class="social-login ">
+                    <div class="social-login-label">
+                        <span class="label px-3">or connect with</span>
+                    </div>
+                    <div class="social-login-body py-2">
+
+                        <span class="g-btn">
+                            <a href="/users/auth/google">
+                                <span class="google">
+                                    <img class="logo-google" src="https://hrcdn.net/fcore/assets/google-colored-20b8216731.svg"
+                                        alt="Login With Google">
+                                    Login with Google
+                                </span>
+                            </a>
+                        </span>
+
+                        <span>
+                            <a href="/users/auth/github">
+                                <span class="github"> 
+                                    <img class="logo-github"
+                                        src="https://hrcdn.net/community-frontend/assets/github-colored-1db995054b.svg"
+                                        alt="Login With Github">
+                                    Login with Github
+                                </span>
+                            </a>
+                        </span>
+                    </div>
+                </div>
+
+                <div class="logo-container">
+                    <div class="login-logo">
+                        <img src="https://image.ibb.co/n7oTvU/logo_white.png" alt="" />
+                    </div>
+                </div>
+            </form>
+        </div>
+    </div>
+</div>

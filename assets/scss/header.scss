@@ -1,0 +1,111 @@
+header{
+   position: fixed;
+   z-index: 2;
+
+    .inner{
+        height: 60px;
+        width: 98.7vw;
+        display: flex !important;
+        flex-wrap: nowrap;
+        justify-content: space-between;
+        background: linear-gradient(90deg, rgba(2,0,36,1) 0%, rgba(9,9,121,1) 100%, rgb(4, 56, 116) 100%);
+        color: white; 
+    
+        .head{
+        margin-top: 5px;
+        font-family: Arial, Helvetica, sans-serif;
+        padding: 10px;
+        font-size: 30px;
+        font-weight: bolder;
+
+            a{
+                text-decoration: none;
+                color: white;
+            }
+        }
+
+        .head-container{
+            display: flex;
+            flex-wrap: wrap;
+            padding: 10px;
+            margin-top: 16px;
+            margin-right: 10px;
+            font-family: Arial, Helvetica, sans-serif;
+
+            .chaticon{
+                padding-top: 5px;
+                padding-right: 5px;
+            }
+
+            .chaticon i:hover{
+                cursor: pointer;
+            }
+    
+            .text{
+                margin-left: 10px;
+                text-transform: capitalize;
+    
+                a{
+                    text-decoration: none;
+                    color: white;
+                }
+    
+                a:hover{
+                    text-decoration: none;
+                    cursor: pointer;
+                }
+            }
+        
+        }
+    
+    }
+
+    .bar{
+        height: 25px;
+        background-color: #eeeeee;
+    }
+    
+}
+
+
+@media only screen and (max-width: 420px) {
+
+
+    .inner{
+        width: 100vw !important;
+    }
+
+    .bar{
+        height: 10px !important; 
+    }
+
+    .head{
+        font-size: 20px !important;
+        padding-bottom: 0px !important;
+        padding-top: 16px !important;
+    }
+}
+
+@media only screen and (max-width: 400px) {
+
+    .head-container{
+        margin-top: 12px !important;
+    }
+
+    .head{
+        font-size: 16px !important;
+        padding-bottom: 0px !important;
+        padding-top: 18px !important;
+    }
+}
+
+
+@media only screen and (max-width: 320px) {
+
+    .head{
+        font-size: 18px !important;
+        padding-bottom: 0px !important;
+        padding-top: 20px !important;
+    }
+
+}

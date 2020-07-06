@@ -1,0 +1,38 @@
+<link rel="stylesheet" href="<%= assetPath('css/comments.css') %>">
+
+<li id="comment-<%= comment._id %>">
+
+    <div class="comment">
+        <a href="/users/profile/<%= comment.user.id %>">
+            <% if(comment.user.avatar){ %>
+            <img class="rounded-circle" width="39" height="39" src="<%= comment.user.avatar %>" alt="">
+            <% } else{ %>
+            <img class="rounded-circle" width="39" src="<%= assetPath('images/no_profile.jpg') %>" alt="">
+            <% } %>
+            <div class="comment-content ml-2">
+                <a href="/users/profile/<%= comment.user.id %>" class="font-weight-bold">
+                    <span class="text-capitalize">
+                        <%= comment.user.name %>
+                    </span>
+                </a>
+        </a>
+                <%= comment.content %>
+            </div>
+
+            <div class="dropdown">
+                <button class="btn btn-link dropdown-toggle details" type="button" id="gedf-drop1"
+                    data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+                    <i class="fa fa-ellipsis-h"></i>
+                </button>
+                <div class="dropdown-menu dropdown-menu-right" aria-labelledby="gedf-drop1">
+                    <div class="h6 dropdown-header">Configuration</div>
+                    <a class="dropdown-item" href="#">Save</a>
+                    <% if(locals.user && (locals.user.id == comment.user.id || post.user.id == locals.user.id)){ %>
+                    <a class="delete-comment-button dropdown-item " href="/comments/destroy/<%= comment.id %>"> Delete
+                    </a>
+                    <% } %>
+                    <a class="dropdown-item" href="#">Report</a>
+                </div>
+            </div>
+    </div>
+</li>

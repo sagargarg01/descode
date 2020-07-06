@@ -1,0 +1,244 @@
+<link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0/css/bootstrap.min.css"
+    integrity="sha384-Gn5384xqQ1aoWXA+058RXPxPg6fy4IWvTNh0E263XmFcJlSAwiGgFAW/dAiS6JXm" crossorigin="anonymous">
+
+<script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.12.9/umd/popper.min.js"
+    integrity="sha384-ApNbgh9B+Y1QKtv3Rn7W3mgPxhU9K/ScQsAP7hUibX39j7fakFPskvXusvfa0b4Q"
+    crossorigin="anonymous"></script>
+<script src="//maxcdn.bootstrapcdn.com/bootstrap/4.1.1/js/bootstrap.min.js"></script>
+
+<link rel="stylesheet" href="https://use.fontawesome.com/releases/v5.5.0/css/all.css"
+    integrity="sha384-B4dIYHKNBt8Bc12p+WXckhzcICo0wtJAoU8YZTY5qE0Id1GSseTk6S+L3BlXeVIU" crossorigin="anonymous">
+
+<link rel="stylesheet" href="<%= assetPath('css/home.css') %>">
+
+
+<% if(locals.user){ %>
+
+
+    <% if(locals.user.verifyUser === false){ %>
+
+        <div style="padding: 20%;">
+           <h1>Verify Your Email Address</h1>
+
+           <div>
+            Please enter the 4-digit verification code we sent via mail:
+           </div>
+
+           <div>
+                <form action="/users/verify_account" method="post">
+                    <input type="text" name="OTP" >
+                    <div>
+                        Didn't recieve the code ?
+                        <a id="resend" href="/users/resend_OTP">Resend OTP</a>
+                    </div>
+                   
+                    <input type="submit" value="Verify & Proceed">
+                </form>
+           </div>
+
+        </div>
+
+        <%} else { %>
+
+<div id="home-container" class="container-fluid">
+    <div class="empty">
+        <div class="inner card ml-3">
+            <div class="cover-picture">
+            </div>
+
+            <a href="/users/profile/<%= locals.user.id %>" class="locals-user-link">
+                <div class="user-pic">
+                    <% if(locals.user.avatar){ %>
+                    <img class="rounded-circle mx-5" width="70" height="70" src="<%= locals.user.avatar %>" alt="">
+                    <% } else{ %>
+                    <img class="rounded-circle mx-5" width="70" src="<%= assetPath('images/no_profile.jpg') %>" alt="">
+                    <% } %>
+                </div>
+
+                <div class="card-body text-capitalize">
+                    <h5 class="card-title text-center"><%= locals.user.name %></h5>
+                </div>
+            </a>
+
+            <div class="text-muted small friendlist">
+                <span>
+                    friendlist
+                </span>
+                <span class="length">
+                    <%= locals.user.friendships.length %>
+                </span>
+            </div>
+
+            <div class="text-muted small friendlist">
+                <span>
+                    email
+                </span>
+                <span class="length">
+                    <%= locals.user.email%>
+                </span>
+            </div>
+        </div>
+
+
+    </div>
+ 
+
+    <div class="row posts">
+        <div class="mx-3 posts-size">
+            <!-- - \\\\\\\Post-->
+
+            <form action="/posts/create" id="new-post-form" method="POST">
+                <div class="card">
+                    <div class="card-header">
+                        <ul class="nav nav-tabs card-header-tabs">
+                            <li class="nav-item">
+                                <a class="nav-link active">
+                                    Make a publication
+                                </a>
+                            </li>
+                        </ul>
+                    </div>
+                    <div class="card-body">
+                        <div class="form-group">
+                            <textarea class="form-control" name="content" cols="55" rows="3"
+                                placeholder="Whats on your mind.. Type Here !!" required></textarea>
+                        </div>
+                        <div class="btn-toolbar justify-content-between">
+                            <div class="btn-group">
+                                <button type="submit" class="btn btn-primary">share</button>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </form>
+
+            <!-- Post ///// -->
+            <div id="post-list-container">
+
+                <% for(post of posts){ %>
+
+                <%- include('posts') %>
+
+                <% } %>
+
+
+            </div>
+        </div>
+    </div>
+
+
+    <section id="user-friends">
+        <!-- changinf this &********************** -->
+
+        <div class="inner">
+            <div class="friends list-group">
+                <h4>FRIENDS</h4>
+
+                <div class="box-size">
+                    <% for(let friends of friendships){ %>
+
+                    <p class="list-group-item">
+                        <% if(friends.avatar){ %>
+                        <img class="rounded-circle" width="45" height="45" src="<%= friends.avatar %>" alt="">
+                        <% } else{ %>
+                        <img class="rounded-circle" width="45" src="<%= assetPath('images/no_profile.jpg') %>" alt="">
+                        <% } %>
+                        <a class="ml-2" href="/users/profile/<%= friends.id %>"> <%= friends.name %> </a>
+                    </p>
+
+                    <% } %>
+                </div>
+
+
+            </div>
+
+            <div class="users list-group">
+                <h4>ALL USERS</h4>
+
+                <div class="box-size">
+                    <% for(u of all_users){%>
+                    <p class="list-group-item">
+                        <% if(u.avatar){ %>
+                        <img class="rounded-circle" width="45" height="45" src="<%= u.avatar %>" alt="">
+                        <% } else{ %>
+                        <img class="rounded-circle" width="45" src="<%= assetPath('images/no_profile.jpg') %>" alt="">
+                        <% } %>
+                        <a class="ml-2" href="/users/profile/<%= u.id %>"> <%= u.name %></a>
+                    </p>
+                    <% } %>
+                </div>
+
+            </div>
+        </div>
+
+
+    </section>
+
+</div>
+<% } %>
+
+<% }else{ %>
+
+
+<div class="welcome">
+
+    <img class="img-fluid" src="<%= assetPath('images/welcome.svg') %>" alt="">
+
+    <div class="welcome_text">
+        <span>WELCOME TO</span>
+         SOCIAL GARG !
+        <div class="underline">
+            (-By SAGAR GARG)
+        </div>
+    </div>
+
+
+</div>
+
+
+
+<% } %>
+
+
+
+<script src="<%= assetPath('js/toggle_likes.js') %>"></script>
+<script>
+    $('.toggle-like-button').each(function () {
+        let self = this;
+        let toggleLike = new ToggleLike(self);
+    });
+</script>
+
+<!-- post comments -->
+<script src="<%= assetPath('js/home_posts_comments.js') %>"></script>
+<script>
+    $('.postId').each(function(){
+        let self = this;
+        let postid = $(self).attr("value");
+        let newComment = new PostComments(postid)
+    })
+</script>
+
+<script src="<%= assetPath('js/enterOTP.js') %>"></script>
+
+<!-- //set dates -->
+
+<script>
+    $('.post-date').each(function(){
+        let selfdate = $(this).text();
+       selfdate =  selfdate.trim();
+        // console.log(selfdate)
+        let time = selfdate.substring(17,21);
+        let month = selfdate.substring(4,7);
+        let date = selfdate.substring(8,10);
+        // console.log(date)
+
+        let newDate = date+" "+month+" at "+time
+        console.log(newDate)
+        $(this).text(newDate)
+    })
+</script>
+
+
+<script src="https://cdnjs.cloudflare.com/ajax/libs/socket.io/2.3.0/socket.io.js"></script>
+<script src="<%= assetPath('js/chat_engine.js') %>"></script>

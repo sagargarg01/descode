@@ -1,0 +1,68 @@
+header {
+  position: fixed;
+  z-index: 2; }
+  header .inner {
+    height: 60px;
+    width: 98.7vw;
+    display: flex !important;
+    flex-wrap: nowrap;
+    justify-content: space-between;
+    background: linear-gradient(90deg, #020024 0%, #090979 100%, #043874 100%);
+    color: white; }
+    header .inner .head {
+      margin-top: 5px;
+      font-family: Arial, Helvetica, sans-serif;
+      padding: 10px;
+      font-size: 30px;
+      font-weight: bolder; }
+      header .inner .head a {
+        text-decoration: none;
+        color: white; }
+    header .inner .head-container {
+      display: flex;
+      flex-wrap: wrap;
+      padding: 10px;
+      margin-top: 16px;
+      margin-right: 10px;
+      font-family: Arial, Helvetica, sans-serif; }
+      header .inner .head-container .chaticon {
+        padding-top: 5px;
+        padding-right: 5px; }
+      header .inner .head-container .chaticon i:hover {
+        cursor: pointer; }
+      header .inner .head-container .text {
+        margin-left: 10px;
+        text-transform: capitalize; }
+        header .inner .head-container .text a {
+          text-decoration: none;
+          color: white; }
+        header .inner .head-container .text a:hover {
+          text-decoration: none;
+          cursor: pointer; }
+  header .bar {
+    height: 25px;
+    background-color: #eeeeee; }
+
+@media only screen and (max-width: 420px) {
+  .inner {
+    width: 100vw !important; }
+  .bar {
+    height: 10px !important; }
+  .head {
+    font-size: 20px !important;
+    padding-bottom: 0px !important;
+    padding-top: 16px !important; } }
+
+@media only screen and (max-width: 400px) {
+  .head-container {
+    margin-top: 12px !important; }
+  .head {
+    font-size: 16px !important;
+    padding-bottom: 0px !important;
+    padding-top: 18px !important; } }
+
+@media only screen and (max-width: 320px) {
+  .head {
+    font-size: 18px !important;
+    padding-bottom: 0px !important;
+    padding-top: 20px !important; } }
