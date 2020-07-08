@@ -44,7 +44,7 @@ const production = {
     name: 'production',
     asset_path: process.env.DESCODE_ASSET_PATH,
     session_cookie_key: process.env.DESCODE_SESSION_COOKIE,
-    db: process.env.CODEIAL_DB,
+    db: process.env.DESCODE_DB,
     smtp: {
         service: 'gmail',
         host: 'smtp.gmail.com',
