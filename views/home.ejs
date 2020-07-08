@@ -17,24 +17,30 @@
 
     <% if(locals.user.verifyUser === false){ %>
 
-        <div style="padding: 20%;">
-           <h1>Verify Your Email Address</h1>
+        <div class="OTP_VERI">
+           
+            <div class="card">
 
-           <div>
-            Please enter the 4-digit verification code we sent via mail:
-           </div>
+                <div class="heading">Thank you for Sign in</div>
 
-           <div>
-                <form action="/users/verify_account" method="post">
-                    <input type="text" name="OTP" >
-                    <div>
-                        Didn't recieve the code ?
-                        <a id="resend" href="/users/resend_OTP">Resend OTP</a>
-                    </div>
-                   
-                    <input type="submit" value="Verify & Proceed">
-                </form>
-           </div>
+                <div class="my-4">Verify Your Email Address</div>
+
+            <div>
+                Please enter the 4-digit verification code we sent via mail:
+            </div>
+
+            <div>
+                    <form action="/users/verify_account" method="post" class="my-3">
+                        <input type="text" name="OTP" class="OTP_INPUT" >
+                        <div class="my-3 mb-4">
+                            Didn't recieve the code ?
+                            <a id="resend" href="/users/resend_OTP">Resend OTP</a>
+                        </div>
+                    
+                        <input type="submit" value="Verify & Proceed" class="s-btn">
+                    </form>
+            </div>
+            </div>
 
         </div>
 
@@ -304,14 +310,12 @@
     $('.post-date').each(function(){
         let selfdate = $(this).text();
        selfdate =  selfdate.trim();
-        // console.log(selfdate)
-        let time = selfdate.substring(17,21);
+
+       let time = selfdate.substring(17,21);
         let month = selfdate.substring(4,7);
         let date = selfdate.substring(8,10);
-        // console.log(date)
 
         let newDate = date+" "+month+" at "+time
-        console.log(newDate)
         $(this).text(newDate)
     })
 </script>

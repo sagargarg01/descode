@@ -36,7 +36,8 @@ class PostComments {
 
                     // remove text from input and change the count of comments
                     if (commentlength == 1) { length.text(`${commentlength} comment`) } else { length.text(`${commentlength} comments`) }
-                    $(`#post-${postId}-comments-form input[name=content]`).val('');
+                    $(`#post-${postId}-comments-form textarea[name=content]`).val('');
+                    $(`#post-${postId}-comments-form textarea[name=content]`).css('height','60px')
 
                     pSelf.deleteComment($(' .delete-comment-button', newComment));
 
@@ -79,7 +80,10 @@ class PostComments {
                             </span>
                         </a>
                 </a>
-                            ${comment.content}
+                <span class="content">
+                ${comment.content}
+                </span>
+                            
                     </div>
         
                     <div class="dropdown">

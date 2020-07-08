@@ -10,6 +10,7 @@
 
         <div class="head-container">
 
+            <% if(locals.user.verifyUser === true){ %>
             <div class="text chaticon">
                 <a href="/messages/allchats" style="color: white;">
                     <i class="far fa-comment-alt"></i>
@@ -21,6 +22,7 @@
                     <%= user.name %>
                 </a>
             </div>
+            <% } %>
 
             <div class="text">
                 <a href="/users/sign-out">Sign Out</a>
@@ -40,7 +42,7 @@
         <% } %>
     </div>
 
-    <% if(locals.user){ %>
+    <% if(locals.user && locals.user.verifyUser === true){ %>
     <div class="bar"></div>
     <% } %>
 

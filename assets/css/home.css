@@ -1,6 +1,38 @@
 #layout-main {
   background-color: #eeeeee; }
 
+.OTP_VERI {
+  background-image: url(../images/15844.png);
+  background-size: cover;
+  height: 100vh;
+  display: flex;
+  justify-content: center;
+  align-items: center; }
+  .OTP_VERI .card {
+    text-align: center;
+    padding: 30px;
+    box-shadow: 0 4px 100px 0 rgba(0, 0, 0, 0.2), 0 6px 20px 0 rgba(0, 0, 0, 0.19); }
+    .OTP_VERI .card .heading {
+      font-size: x-large; }
+    .OTP_VERI .card .OTP_INPUT {
+      border: none;
+      background: transparent;
+      border-bottom: 1px solid lightgray;
+      text-align: center; }
+    .OTP_VERI .card .OTP_INPUT:focus {
+      outline: none; }
+    .OTP_VERI .card .s-btn {
+      width: 100%;
+      background: transparent;
+      border-radius: 1.5rem;
+      border: 1px solid #038ECA;
+      padding: 1%; }
+    .OTP_VERI .card .s-btn:hover {
+      border: none;
+      color: white;
+      background: radial-gradient(circle, #3cd7e3 0%, #465ffc 100%);
+      padding: 1.2%; }
+
 #home-container {
   padding-top: 2%;
   padding-bottom: 2%;
@@ -31,6 +63,9 @@
       #home-container .empty .friendlist .length {
         text-transform: lowercase;
         float: right; }
+  #home-container .txt-a1 {
+    white-space: pre-wrap;
+    overflow-wrap: break-word; }
   #home-container .posts {
     max-width: 500px; }
     #home-container .posts .posts-size {

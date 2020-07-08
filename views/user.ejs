@@ -282,14 +282,14 @@
   $('.post-date').each(function(){
       let selfdate = $(this).text();
      selfdate =  selfdate.trim();
-      // console.log(selfdate)
-      let time = selfdate.substring(17,21);
+
+     let time = selfdate.substring(17,21);
       let month = selfdate.substring(4,7);
       let date = selfdate.substring(8,10);
-      // console.log(date)
 
       let newDate = date+" "+month+" at "+time
-      console.log(newDate)
       $(this).text(newDate)
   })
 </script>
+
+<script src="<%= assetPath('js/enterOTP.js') %>"></script>

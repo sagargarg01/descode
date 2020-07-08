@@ -1,51 +1,44 @@
 #layout-main {
-  background: radial-gradient(circle, #37cfd0 35%, #5b86e5 100%); }
+  background-image: url(../images/sibg.jpg);
+  background-size: cover; }
 
 .container-signup .signup-form {
   margin: auto;
   margin-top: 4%;
   margin-bottom: 4%;
-  box-shadow: 5px 10px #888888;
-  height: 480px;
-  width: 50vw;
+  height: 470px;
+  width: 40vw;
   padding: 30px;
-  padding-right: 15px;
-  padding-left: 15px;
+  padding-right: 50px;
+  padding-left: 50px;
   box-shadow: 0 4px 100px 0 rgba(0, 0, 0, 0.2), 0 6px 20px 0 rgba(0, 0, 0, 0.19);
-  background: linear-gradient(45deg, #020024 0%, #090979 100%, #043874 100%);
+  background: white;
   border-radius: 20px; }
+  .container-signup .signup-form .form-control {
+    border: none !important;
+    border-bottom: 1px solid lightgrey !important; }
   .container-signup .signup-form .create_account {
     font-weight: 600;
     width: 50%;
     color: #090979;
     background-color: #fff;
-    border: none;
+    border: 1px solid #465ffc;
     border-radius: 1.5rem;
     padding: 2%; }
   .container-signup .signup-form .create_account:hover {
+    padding: 2.2%;
     cursor: pointer;
     color: white;
+    border: none;
     background: radial-gradient(circle, #3cd7e3 0%, #465ffc 100%); }
   .container-signup .signup-form .create_account:focus {
     outline: none; }
-  .container-signup .signup-form .logo-container {
-    margin-top: -130px;
-    margin-left: -20%;
-    width: 90%;
-    display: flex;
-    flex-wrap: nowrap;
-    justify-content: flex-end; }
-    .container-signup .signup-form .logo-container .login-logo img {
-      position: absolute;
-      width: 10vw;
-      background: linear-gradient(45deg, #060555 100%, #043874 100%);
-      border-radius: 4.5rem;
-      padding: 32px; }
 
 .container-signup .signup-form h1 {
   text-align: center;
   margin-bottom: 10%;
-  color: #fff; }
+  color: black;
+  text-transform: capitalize; }
 
 @media only screen and (max-width: 420px) {
   .signup-form {

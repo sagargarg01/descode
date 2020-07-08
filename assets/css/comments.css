@@ -16,6 +16,8 @@ ul {
     padding: 10px;
     padding-top: 8px;
     border-radius: 25px; }
+    .comment .comment-content .content {
+      white-space: pre-wrap; }
   .comment .details {
     color: transparent;
     font-size: smaller; }
