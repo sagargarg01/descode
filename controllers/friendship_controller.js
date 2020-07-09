@@ -1,5 +1,6 @@
 const User = require('../models/user');
 const Friendship = require('../models/friendship');
+const Chatroom = require('../models/chatbox');
 
 
 module.exports.createFriensdhip = async function (req, res) {
@@ -14,6 +15,16 @@ module.exports.createFriensdhip = async function (req, res) {
         fromUser.save();
         toUser.friendships.push(req.user.id);
         toUser.save();
+
+        // let chat_room = await Chatroom.create({
+        //     user1: toUser,
+        //     user2: fromUser
+        // });
+
+        // fromUser.chatlist.push(chat_room.id);
+        // fromUser.save();
+        // toUser.chatlist.push(chat_room.id);
+        // toUser.save();
 
         req.flash('success', 'Friend Added Successfully');
     }

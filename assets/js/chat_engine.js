@@ -5,7 +5,7 @@ class chatEngine {
         this.userEmail = userEmail;
 
         // this.socket = io.connect('http://localhost:5000');
-        this.socket = io.connect('http://34.239.110.28:5000');
+         this.socket = io.connect('http://107.21.7.155:5000');
 
         if (this.userEmail) {
             this.connectionHandler();
@@ -17,7 +17,7 @@ class chatEngine {
         let self = this;
 
         this.socket.on('connect', function () {
-            // console.log('connection established using sockets...!');
+            console.log('connection established using sockets...!');
 
 
             self.socket.emit('join_room', {
@@ -26,7 +26,7 @@ class chatEngine {
             });
 
             self.socket.on('user_joined', function (data) {
-                // console.log('a user joined!', data);
+                console.log('a user joined!', data);
             })
 
 
@@ -47,7 +47,7 @@ class chatEngine {
         });
 
         self.socket.on('receive_message', function (data) {
-            // console.log('message received', data.message);
+            console.log('message received', data);
 
             let messageType = 'other-message';
 
@@ -72,6 +72,7 @@ class chatEngine {
                 <div class="received_msg">
                    <div class="received_withd_msg">
                       <p>${data.message}</p>
+                      <small class="time_date"> ${data.user_email}</small>
                    </div>
                 </div>
              </div>`)
