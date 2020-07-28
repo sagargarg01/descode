@@ -21,13 +21,12 @@ const flash = require('connect-flash');
 const customMware = require('./config/middleware');
 
 // for heroku
-var server = http.createServer(app);
+
+var server = require('http').createServer(app);
 
 // setup the chat server to be used with socket.io 
-const chatServer = require('http').Server(app);
-const chatSockets = require('./config/chat_sockets').chatSockets(chatServer);
-chatServer.listen(port);
-console.log('chat Server is listening on port', chatPORT);
+const chatSockets = require('./config/chat_sockets').chatSockets(server);
+console.log('chat Server is listening on port', port);
 const path = require('path');
 
 if (env.name == 'development'){
