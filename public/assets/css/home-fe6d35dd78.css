@@ -2,7 +2,7 @@
   background-color: #eeeeee; }
 
 .OTP_VERI {
-  background-image: url(../images/15844.png);
+  background-image: url(../images/15844-8f9a3b4a2f.png);
   background-size: cover;
   height: 100vh;
   display: flex;
@@ -100,7 +100,7 @@
   .welcome #carouselExampleCaptions {
     top: 0px !important;
     width: 100% !important;
-    height: 400px !important;
+    height: 85vh !important;
     margin: auto; }
     .welcome #carouselExampleCaptions #color-change {
       color: white; }
@@ -121,7 +121,7 @@
   .welcome #sign {
     text-align: center;
     height: 500px;
-    background-image: url("../images/back-1.jpg");
+    background-image: url("../images/back-1-218a72a938.jpg");
     background-repeat: no-repeat;
     background-size: cover;
     padding: 20px 0px; }

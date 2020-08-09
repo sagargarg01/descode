@@ -4,7 +4,7 @@ const logger = require('morgan');
 const cookieParser = require('cookie-parser');
 const app = express();
 require('./config/view-helpers')(app);
-const port = process.env.PORT || 8000;
+const port =  8000;
 const expressLayouts = require('express-ejs-layouts');
 const db = require('./config/mongoose');
 //used for session cookie
@@ -20,13 +20,12 @@ const sassMiddleware = require('node-sass-middleware');
 const flash = require('connect-flash');
 const customMware = require('./config/middleware');
 
-// for heroku
-
-var server = require('http').createServer(app);
 
 // setup the chat server to be used with socket.io 
-const chatSockets = require('./config/chat_sockets').chatSockets(server);
-console.log('chat Server is listening on port', port);
+const chatServer = require('http').Server(app);
+const chatSockets = require('./config/chat_sockets').chatSockets(chatServer);
+chatServer.listen(5000);
+console.log('chat Server is listening on port 5000');
 const path = require('path');
 
 if (env.name == 'development'){
@@ -94,7 +93,7 @@ app.use(customMware.setFlash);
 //use express router
 app.use('/',require('./routes/'));
 
-server.listen(port,function(err){
+app.listen(port,function(err){
     if(err){
         console.log(`Error in running the server : ${err}`);
     }

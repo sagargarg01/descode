@@ -56,11 +56,11 @@ const production = {
     },
     google_client_id: "816614979534-54tnh3sdbhv765ne95h78br9n8e25lqc.apps.googleusercontent.com",
     google_client_secret: "PYI2c9TofIgdi9uORyBvphgn",
-    google_call_back_url:"https://descode.herokuapp.com/users/auth/google/callback",
+    google_call_back_url:"http://descode.co/users/auth/google/callback",
 
     github_client_id:"1fe1853aeb0b1b9b4767",
     github_client_secret:"c4b2726c212d3e2ca2513357c8ae842e61dd141b",
-    github_call_back_url:"https://descode.herokuapp.com/users/auth/github/callback",
+    github_call_back_url:"http://descode.co/users/auth/github/callback",
     
     jwt_secret: "iwCodBa54XpRI9nod0jWmqqdvMLTpXUe",
     morgan: {

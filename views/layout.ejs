@@ -4,6 +4,7 @@
         <meta name="viewport" content="width=device-width, initial-scale=1.0, minimum-scale=1">
 
         <link rel="icon" href="<%= assetPath('images/favicon.svg') %>">
+        <link href="https://unpkg.com/aos@2.3.1/dist/aos.css" rel="stylesheet">
         <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/noty/3.1.4/noty.min.css">
         <script src="https://cdnjs.cloudflare.com/ajax/libs/noty/3.1.4/noty.min.js"></script>
 
@@ -50,6 +51,16 @@
                  timeout: 1500 
              }).show();
        <% } %>
+    </script>
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.3.1/jquery.min.js"></script>
+    <script src="https://unpkg.com/aos@2.3.1/dist/aos.js"></script>
+    <script>
+          AOS.init({
+              offset: 180, // offset (in px) from the original trigger point
+              delay: 0, // values from 0 to 3000, with step 50ms
+              duration: 2000,
+              once : true
+          });
     </script>
 
     </body>

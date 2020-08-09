@@ -4,7 +4,7 @@ class chatEngine {
         this.chatBox = $(`#${chatBoxId}`);
         this.userEmail = userEmail;
 
-        this.socket = io.connect('https://descode.herokuapp.com/messages/allchats'); 
+        this.socket = io.connect('http://18.207.236.36:5000'); 
 
         if (this.userEmail) {
             this.connectionHandler();
