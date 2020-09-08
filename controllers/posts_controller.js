@@ -1,6 +1,7 @@
 const Post = require('../models/post');
 const Comment = require('../models/comment');
 const Like = require('../models/like');
+const User = require('../models/user');
 
 module.exports.create = async function(req, res){
 
@@ -33,6 +34,28 @@ module.exports.create = async function(req, res){
         return res.redirect('back');
     }
 
+}
+
+module.exports.uploadImage = async function(req, res){
+    
+    
+    try {
+        await Post.uploadedImage(req, res, async function(err){
+            console.log(req.file);
+            console.log(req.body);
+            if(err){ console.log('***Multer error', err); return;}
+
+            let post = await Post.create({
+                user: req.user._id,
+                image: Post.imagePath + '/' + req.file.filename
+            });
+            req.flash('success', 'Post created successfully');
+            return res.redirect('back');
+        })
+    } catch (error) {
+        console.log(error);
+        return res.redirect('back');
+    }
 }
 
 

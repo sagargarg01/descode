@@ -50,7 +50,12 @@
         <!-- post body -->
         <div class="card-body card-post">
             <p class="card-text">
-                <%= post.content %>
+                <div class="post-content"> <%= post.content %></div>
+               
+                <% if(post.image){ %>
+                    <img src="<%= post.image %>" width="100%" alt="post">
+               <% } %>
+                
             </p>
 
             <small class="text-muted" id="likes-count-<%= post._id %>" data-likes="<%= post.likes.length %>">

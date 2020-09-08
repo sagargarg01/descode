@@ -1,1 +1,36 @@
-ul{padding:0!important}.comment{font-family:Helvetica,Arial,sans-serif;font-size:small;display:flex;flex-wrap:nowrap;margin-bottom:10px}.comment a{color:#090977}.comment .comment-content{width:auto;text-align:start;background-color:#f2f3f5;padding:10px;padding-top:8px;border-radius:25px}.comment .comment-content .content{white-space:pre-wrap}.comment .details{color:transparent;font-size:smaller}.comment:hover .details{color:#d3d3d3}.like-button{margin-left:60px}@media only screen and (max-width:420px){.details{color:#868585!important}}
+ul {
+  padding: 0px !important; }
+
+.comment {
+  font-family: Helvetica, Arial, sans-serif;
+  font-size: small;
+  display: flex;
+  align-items: center;
+  flex-wrap: nowrap;
+  margin-bottom: 10px; }
+  .comment a {
+    color: #090977; }
+  .comment .comment-content {
+    width: auto;
+    max-width: 80%;
+    text-align: start;
+    background-color: #F2F3F5;
+    padding: 10px;
+    padding-top: 8px;
+    border-radius: 25px; }
+    .comment .comment-content .content {
+      display: inline;
+      white-space: pre-wrap; }
+  .comment .details {
+    color: transparent;
+    font-size: smaller; }
+
+.comment:hover .details {
+  color: lightgray; }
+
+.like-button {
+  margin-left: 60px; }
+
+@media only screen and (max-width: 420px) {
+  .details {
+    color: #868585 !important; } }

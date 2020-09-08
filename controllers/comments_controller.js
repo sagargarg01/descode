@@ -30,6 +30,7 @@ module.exports.create = async function (req, res) {
         //     });
 
             if (req.xhr) {
+                // to populate certain field on a preloaded document, thats how its done
                 comment = await comment.populate('user', 'name email avatar').execPopulate();
 
                 return res.status(200).json({

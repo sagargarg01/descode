@@ -247,14 +247,6 @@
     $('#user-friends').css("display", "none");
   }
 
-  var loadFile = function(event) {
-    var output = document.getElementById('output');
-    output.src = URL.createObjectURL(event.target.files[0]);
-    output.onload = function() {
-      URL.revokeObjectURL(output.src) // free memory
-    }
-  };
-
 </script>
 
 
@@ -294,4 +286,4 @@
   })
 </script>
 
-<script src="<%= assetPath('js/enterOTP.js') %>"></script>
+<script src="<%= assetPath('js/functionality.js') %>"></script>

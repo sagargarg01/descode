@@ -96,16 +96,22 @@
 
     }
 
-    .txt-a1{
-        white-space: pre-wrap;
-        overflow-wrap: break-word;
+    .posts{
+       max-width: 500px;
+        .posts-size{
+          width: 450px;
+        }
     }
 
-    .posts{
-        max-width: 500px;
+    .img{
+        margin: auto;
+        margin-top: 20px;
+        width: 70%;
+        display: flex;
 
-        .posts-size{
-            max-width: 500px;
+        img{
+            height: 100%;
+            width: 100%;
         }
     }
 

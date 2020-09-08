@@ -27,3 +27,20 @@ $('textarea').each(function () {
    this.style.height = 'auto';
    this.style.height = (this.scrollHeight) + 'px';
  });
+
+$('#posts-tab').click(function(){
+   $('#submit-btn').attr('form','new-post-form');
+});
+
+$('#images-tab').click(function(){
+   $('#submit-btn').attr('form','new-image-post-form');
+});
+
+
+var loadFile = function(event) {
+   var output = document.getElementById('output');
+   output.src = URL.createObjectURL(event.target.files[0]);
+   output.onload = function() {
+     URL.revokeObjectURL(output.src) // free memory
+   }
+ };

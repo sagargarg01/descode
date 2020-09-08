@@ -7,7 +7,7 @@ const usersPosts = require('../controllers/posts_controller');
 // router.get('/posts',usersPosts.posts);
 
 router.post('/create',passport.checkAuthentication,usersPosts.create);
-
+router.post('/uploadImage', passport.checkAuthentication, usersPosts.uploadImage);
 router.get('/destroy/:id',passport.checkAuthentication,usersPosts.destroy);
 
 module.exports = router;

@@ -5,6 +5,7 @@ ul{
     font-family: Helvetica, Arial, sans-serif;
     font-size: small;
     display: flex;
+    align-items: center;
     flex-wrap: nowrap;
     margin-bottom: 10px; 
 
@@ -13,7 +14,8 @@ ul{
     }
 
     .comment-content{
-        width: auto;
+        width: -webkit-fill-available;
+        max-width: 80%;
         text-align: start;
         background-color: #F2F3F5;
         padding: 10px;
@@ -21,6 +23,7 @@ ul{
         border-radius: 25px;
 
         .content{
+            display: inline;
             white-space: pre-wrap;
         }
     }

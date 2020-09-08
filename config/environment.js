@@ -14,7 +14,7 @@ const development = {
     name: 'development',
     asset_path: './assets',
     session_cookie_key: 'blahsomething',
-    db: 'hacki_project_dev',
+    db: 'codeial_development',
     smtp: {
         service: 'gmail',
         host: 'smtp.gmail.com',
@@ -70,4 +70,4 @@ const production = {
 }
 
 
-module.exports =production;
+module.exports =development;

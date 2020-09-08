@@ -2,10 +2,6 @@ li{
     list-style: none;
     margin-top: 10px;
 
-    .card-text{
-        white-space: pre-wrap;  
-    }
-    
     .post{
         max-width: 550px;
     }
@@ -41,6 +37,10 @@ li{
     .card-post{
         padding-bottom:10px !important;
         padding-top:10px !important;
+
+        .post-content{
+            white-space: pre-line;
+        }
 
         .comments{
             float: right;

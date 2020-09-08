@@ -65,6 +65,7 @@ module.exports.update = async function (req, res) {
 
                 user.name = req.body.name;
                 user.email = req.body.email;
+                console.log(req.file);
 
                 if (req.file) {
 
@@ -100,7 +101,7 @@ module.exports.signUp = function (req, res) {
     }
 
     return res.render('user_sign_up', {
-        title: "Codeial | Sign Up"
+        title: " Sign Up"
     });
 }
 
@@ -113,7 +114,7 @@ module.exports.signIn = function (req, res) {
     }
 
     return res.render('user_sign_in', {
-        title: "Codeial | Sign In"
+        title: " Sign In"
     });
 }
 
