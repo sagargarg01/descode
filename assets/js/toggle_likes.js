@@ -19,32 +19,21 @@ class ToggleLike {
             })
                 .done(function (data) {
                     
-                    let likesCount = parseInt($(`#likes-count-${data.data.post._id}`).attr('data-likes'));
+                    let likesCount = data.data.post.likes.length;
 
-                    if (data.data.deleted == true) {
-                        likesCount -= 1;
-                    } else {
-                        likesCount += 1;
+                    if(data.data.deleted == true){
+                        $(`#put-like-${data.data.post._id}`).html('<i class="far fa-thumbs-up"></i> Like');
+                    }
+                    else{
+                        $(`#put-like-${data.data.post._id}`).html('<i class="fas fa-thumbs-up"></i> Like');
                     }
 
-
-                    $(`#likes-count-${data.data.post._id}`).attr('data-likes', likesCount);
-
                     if (likesCount > 0) {
-                         
-                        if(data.data.post.likes.find(x=> x.user == data.data.user.id)){ 
-                        $(`#put-like-${data.data.post._id}`).html('<i class="fas fa-thumbs-up"></i> Like')
-                         }else{
-                            $(`#put-like-${data.data.post._id}`).html('<i class="far fa-thumbs-up"></i> Like')
-                         }
-
                             $(`#likes-count-${data.data.post._id}`).html(`<img src="/images/like-4113758d1a.png" 
                             data-likes="<%= post.likes.length %>" id="count" class="rounded-circle" width="30" > ${likesCount}`);
                     }
                     else {
-                        $(`#put-like-${data.data.post._id}`).html('<i class="far fa-thumbs-up"></i> Like')
                         $(`#likes-count-${data.data.post._id}`).html('');
-
                     }
                 })
                 .fail(function (errData) {

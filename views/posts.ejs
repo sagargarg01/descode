@@ -58,7 +58,7 @@
                 
             </p>
 
-            <small class="text-muted" id="likes-count-<%= post._id %>" data-likes="<%= post.likes.length %>">
+            <small class="text-muted" id="likes-count-<%= post._id %>">
                 <% if(post.likes.length > 0){ %>
                 <img src="<%= assetPath('images/like.png') %>" class="rounded-circle" width="30">
                 <%= post.likes.length %>
