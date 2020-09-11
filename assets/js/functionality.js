@@ -44,3 +44,15 @@ var loadFile = function(event) {
      URL.revokeObjectURL(output.src) // free memory
    }
  };
+
+ $('.post-date').each(function(){
+   let selfdate = $(this).text();
+  selfdate =  selfdate.trim();
+  
+  let time = selfdate.substring(16,21);
+   let month = selfdate.substring(4,7);
+   let date = selfdate.substring(8,10);
+
+   let newDate = date+" "+month+" at "+time
+   $(this).text(newDate)
+})

@@ -110,11 +110,12 @@ img{
   font-size: 14px;
   margin: 0;
   padding: 10px 10px 10px 12px;
-  width: fit-content;
+  width: 100%;
+  word-break: break-all;
  }
 
 .received_withd_msg {
- max-width: 55%;
+ max-width: 80%;
 }
 
 .mesgs {
@@ -141,6 +142,7 @@ img{
   color:#fff;
   padding: 10px 10px 10px 12px;
   width:fit-content;
+  word-break: break-all;
 }
 
 .outgoing_msg{ 

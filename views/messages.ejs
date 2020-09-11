@@ -18,17 +18,34 @@ rel="stylesheet">
                   <div> <img src="https://ptetutorials.com/images/user-profile.png" alt="sunil">
                   </div>
                   <div class="chat_ib">
-                     <h5>Common Chat Room</h5>
+                     <a href="/messages/chatroom/?chatroom=chatroom1&user=<%= locals.user.id %>"><h5>Common Chat Room 1</h5></a>
                   </div> 
                </div>
             </div>
-           
+            <div class="chat_list active_chat">
+               <div class="chat_people">
+                  <div> <img src="https://ptetutorials.com/images/user-profile.png" alt="sunil">
+                  </div>
+                  <div class="chat_ib">
+                     <a href="/messages/chatroom/?chatroom=chatroom2&user=<%= locals.user.id %>"><h5>Common Chat Room 2</h5></a>
+                  </div>
+               </div>
+            </div>
+            <div class="chat_list active_chat">
+               <div class="chat_people">
+                  <div> <img src="https://ptetutorials.com/images/user-profile.png" alt="sunil">
+                  </div>
+                  <div class="chat_ib">
+                     <a href="/messages/chatroom/?chatroom=chatroom3&user=<%= locals.user.id %>"><h5>Common Chat Room 3</h5></a>
+                  </div>
+               </div>
+            </div>
          </div>
       </div>
 
 
-      <div class="mesgs">
-         <div class="msg_history" id="chat-messages-list">
+       <div class="mesgs">
+         <!-- <div class="msg_history" id="chat-messages-list">
             <div class="incoming_msg"></div>   
             <div class="outgoing_msg"></div>
          </div>
@@ -38,8 +55,8 @@ rel="stylesheet">
                <button class="msg_send_btn" id="send-message" type="submit"><i class="fa fa-paper-plane-o"
                      aria-hidden="true"></i></button>
             </div>
-         </div>
-      </div>
+         </div> -->
+      </div> 
    </div>
 
 </div>
@@ -47,7 +64,3 @@ rel="stylesheet">
 
 <script src="https://cdnjs.cloudflare.com/ajax/libs/socket.io/2.3.0/socket.io.js"></script>
 <script src="<%= assetPath('js/chat_engine.js') %>"></script>
-
-<script>
-new chatEngine('user-chat-box', '<%= locals.user.email %>')
-</script>

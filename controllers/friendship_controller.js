@@ -1,7 +1,5 @@
 const User = require('../models/user');
 const Friendship = require('../models/friendship');
-const Chatroom = require('../models/chatbox');
-
 
 module.exports.createFriensdhip = async function (req, res) {
 

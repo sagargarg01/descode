@@ -27,7 +27,7 @@ const userSchema = new mongoose.Schema({
             ref: 'Friendship' 
         }
     ],
-    chatlist: [
+    chatroomlist: [
         {
             type: mongoose.Schema.Types.ObjectId,
             ref:'ChatBox'
