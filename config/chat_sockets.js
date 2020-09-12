@@ -1,10 +1,9 @@
 const Chats = require('../models/chats');
-const chatRoom = require('../models/chat_room');
 const ChatRoom = require('../models/chat_room');
 
 module.exports.chatSockets = async function(socketServer){
 
-    let room;
+    let joinedoom;
     let io = require('socket.io')(socketServer);
     
     io.sockets.on('connection', function(socket){
