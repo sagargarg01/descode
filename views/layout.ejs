@@ -3,12 +3,26 @@
 
         <meta name="viewport" content="width=device-width, initial-scale=1.0, minimum-scale=1">
 
+        <!-- favicon -->
         <link rel="icon" href="<%= assetPath('images/favicon.svg') %>">
+
+        <!-- load div after delay -->
         <link href="https://unpkg.com/aos@2.3.1/dist/aos.css" rel="stylesheet">
+
+    <!-- Noty for flash -->
         <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/noty/3.1.4/noty.min.css">
         <script src="https://cdnjs.cloudflare.com/ajax/libs/noty/3.1.4/noty.min.js"></script>
 
+        <!-- font awesome -->
+        <link rel="stylesheet" href="https://use.fontawesome.com/releases/v5.5.0/css/all.css"
+    integrity="sha384-B4dIYHKNBt8Bc12p+WXckhzcICo0wtJAoU8YZTY5qE0Id1GSseTk6S+L3BlXeVIU" crossorigin="anonymous">
+
+    <!-- jquery -->
         <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.4.1/jquery.min.js"></script>
+
+        <!-- bootstrap  -->
+        <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0/css/bootstrap.min.css"
+        integrity="sha384-Gn5384xqQ1aoWXA+058RXPxPg6fy4IWvTNh0E263XmFcJlSAwiGgFAW/dAiS6JXm" crossorigin="anonymous">    
 
         <link rel="stylesheet" href="<%= assetPath('css/layout.css') %>">
         <link rel="stylesheet" href="<%= assetPath('css/header.css') %>">
@@ -52,6 +66,7 @@
              }).show();
        <% } %>
     </script>
+    <script src="<%= assetPath('js/search_bar.js') %>"></script>
     <script src="<%= assetPath('js/functionality.js') %>"></script>
     <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.3.1/jquery.min.js"></script>
     <script src="https://unpkg.com/aos@2.3.1/dist/aos.js"></script>

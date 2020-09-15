@@ -1,5 +1,97 @@
-var chatPlace ;
 let chatArea = $('.mesgs');
+
+class chatEngine {
+    constructor(chatRoom, userEmail, id) {
+        this.chatBox = $('#user-chat-box');
+        this.chatRoom = chatRoom;
+        this.userEmail = userEmail;
+        this.userId = id;
+
+        this.socket = io.connect('http://localhost:5000'); 
+
+        if (this.userEmail) {
+            this.connectionHandler();
+        }
+
+    }
+
+    connectionHandler() {
+        let self = this;
+
+        this.socket.on('connect', function () {
+            console.log('connection established using sockets...!');
+
+            self.socket.emit('join_room', {
+                user_email: self.userEmail,
+                chatroom: self.chatRoom
+            });
+
+            self.socket.on('user_joined', function (data) {
+                // $('#chat-messages-list').append(`<div> new user joined ${data.user_email} </div>`)
+                console.log('a user joined!', data);
+            })
+
+        });
+
+        function sendMessage() {
+            console.log('i am here');
+            let msg = $('#chat-message-input').val();
+
+            if (msg != '') {
+                self.socket.emit('send_message', {
+                    message: msg,
+                    user_id: self.userId,
+                    user_email: self.userEmail,
+                    chatroom: self.chatRoom
+                });
+            }
+            $('#chat-message-input').val('');
+        }
+
+        // CHANGE :: send a message on clicking the send message button
+        $('#send-message').click(sendMessage);
+
+        $('input').keydown(function(event){
+            if(event.which === 13 && event.shiftKey == false){
+                sendMessage();
+                event.preventDefault();
+            }
+        })
+
+        self.socket.on('receive_message', function (data) {
+            console.log('message received', data);
+
+            let messageType = 'other-message';
+
+            if (data.user_email == self.userEmail) {
+                messageType = 'self-message';
+            }
+
+            if (messageType === 'self-message') {
+                // self - message
+                $('#chat-messages-list').append(`<div class="outgoing_msg">
+                <div class="sent_msg">
+                   <p>${data.message}</p>
+                </div>
+             </div>`)
+            }
+            else {
+                // other user message
+                $('#chat-messages-list').append(`<div class="incoming_msg">
+                <div class="incoming_msg_img"> <img src="https://ptetutorials.com/images/user-profile.png"
+                      alt="user">
+                </div>
+                <div class="received_msg">
+                   <div class="received_withd_msg">
+                      <p>${data.message}</p>
+                   </div>
+                </div>
+             </div>`)
+            }
+        })
+    }
+
+}
 
 function constructChatROOM(chatRoom, user){
 
@@ -56,7 +148,7 @@ $('.chat_ib a').each(function(){
                chatArea.empty();
                chatArea.append(room);
               
-               makeChats(data.data.chatRoom._id, data.data.user.email, data.data.user._id);
+               new chatEngine(data.data.chatRoom._id, data.data.user.email, data.data.user._id);
                
             },
             error: function (error) {
@@ -64,93 +156,4 @@ $('.chat_ib a').each(function(){
             }
         })
     })
-})
-
-// lets create a function rather than a class to perform the same task
-
-
-function makeChats(chatRoom, userEmail, userId) {
-
-    var chatBox = $('#user-chat-box');
-    let socket = io.connect('http://localhost:5000');
-    
-        if(chatPlace != chatRoom){
-
-            socket.on('connect', function () {
-                console.log('connection established using sockets...!');
-
-
-                socket.emit('join_room', {
-                    user_email: userEmail,
-                    chatroom: chatRoom
-                });
-    
-                if(chatPlace == undefined){
-                socket.on('user_joined', function (data) {
-                    // $('#chat-messages-list').append(`<div> new user joined ${data.user_email} </div>`)
-                    console.log('a user joined!', data);
-                     chatPlace = chatRoom;
-                })
-            }
-    
-            });
-           
-        }
-
-        function sendMessage() {
-            console.log('i am here');
-            let msg = $('#chat-message-input').val();
-
-            if (msg != '') {
-                socket.emit('send_message', {
-                    message: msg,
-                    user_id: userId,
-                    user_email: userEmail,
-                    chatroom: chatRoom
-                });
-            }
-            $('#chat-message-input').val('');
-        }
-
-        // CHANGE :: send a message on clicking the send message button
-        $('#send-message').click(sendMessage);
-
-        $('input').keydown(function(event){
-            if(event.which === 13 && event.shiftKey == false){
-                sendMessage();
-                event.preventDefault();
-            }
-        })
-
-        socket.on('receive_message', function (data) {
-            console.log('message received', data);
-
-            let messageType = 'other-message';
-
-            if (data.user_email == userEmail) {
-                messageType = 'self-message';
-            }
-
-            if (messageType === 'self-message') {
-                // self - message
-                $(`#chat-messages-list-${chatRoom}`).append(`<div class="outgoing_msg">
-                <div class="sent_msg">
-                   <p>${data.message}</p>
-                </div>
-             </div>`)
-            }
-            else {
-                // other user message
-                $(`#chat-messages-list-${chatRoom}`).append(`<div class="incoming_msg">
-                <div class="incoming_msg_img"> <img src="https://ptetutorials.com/images/user-profile.png"
-                      alt="user">
-                </div>
-                <div class="received_msg">
-                   <div class="received_withd_msg">
-                      <p>${data.message}</p>
-                   </div>
-                </div>
-             </div>`)
-            }
-        })
-    }
+});
