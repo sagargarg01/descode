@@ -71,8 +71,6 @@ $('.chat_ib a').each(function(){
 
 function makeChats(chatRoom, userEmail, userId) {
 
-    io.disconnect(`/${chatPlace}`)
-
     var chatBox = $('#user-chat-box');
     let socket = io.connect('http://localhost:5000');
     
@@ -81,13 +79,13 @@ function makeChats(chatRoom, userEmail, userId) {
             socket.on('connect', function () {
                 console.log('connection established using sockets...!');
 
+
                 socket.emit('join_room', {
                     user_email: userEmail,
                     chatroom: chatRoom
                 });
     
-                if(chatPlace != chatRoom){
-                    console.log(chatPlace);
+                if(chatPlace == undefined){
                 socket.on('user_joined', function (data) {
                     // $('#chat-messages-list').append(`<div> new user joined ${data.user_email} </div>`)
                     console.log('a user joined!', data);
