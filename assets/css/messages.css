@@ -1,7 +1,5 @@
 #layout-main {
-  background-color: #eeeeee;
-  height: 75vh !important;
-  min-height: 75vh !important; }
+  background-color: #eeeeee; }
 
 .container-msg {
   width: 98.5vw;
@@ -12,7 +10,8 @@ img {
 
 .inbox_msg {
   display: flex;
-  flex-wrap: nowrap; }
+  flex-wrap: nowrap;
+  height: 80vh; }
 
 .inbox_people {
   background: #f8f8f8;
@@ -64,7 +63,7 @@ img {
   padding: 0px 16px 10px; }
 
 .inbox_chat {
-  height: 57vh;
+  height: 72vh;
   overflow-y: scroll; }
 
 .inbox_chat::-webkit-scrollbar {
@@ -99,7 +98,7 @@ img {
 .mesgs {
   padding: 30px 15px 0 25px;
   background: white;
-  width: 60%;
+  width: 70%;
   position: relative; }
 
 .msg_history {
@@ -163,7 +162,7 @@ img {
   padding: 25px 0 0 0; }
 
 .msg_history {
-  height: 57vh;
+  height: 65vh;
   overflow-y: auto; }
 
 @media only screen and (max-width: 420px) {

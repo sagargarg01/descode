@@ -13,7 +13,8 @@ module.exports.userChats = function(req, res){
 module.exports.chatRoom = async function(req, res){
 
    try {
-      let user = await User.findById(req.query.user);
+      if(req.xhr){
+         let user = await User.findById(req.query.user);
       let name = req.query.chatroom;
       let chatRoom = await ChatBox.findOne({name : name}).populate('messages');
    
@@ -25,13 +26,17 @@ module.exports.chatRoom = async function(req, res){
          });
       }
    
-      res.status(200).json({
+      return res.status(200).json({
          data: {
             chatRoom : chatRoom,
             user: user
          },
          message: "SUCCESS"
-      })   
+      }); 
+      }
+      else{
+         return res.redirect('back');
+      }
 
    } catch (error) {
       console.log('error', error);

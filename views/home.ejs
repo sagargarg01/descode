@@ -10,6 +10,7 @@
 <% if(locals.user){ %>
 
 
+    <!-- when user is not verified -->
     <% if(locals.user.verifyUser === false){ %>
 
         <div class="OTP_VERI">
@@ -40,6 +41,8 @@
         </div>
 
         <%} else { %>
+
+            <!-- when user is verified -->
 
 <div id="home-container" class="container-fluid">
     <div class="empty">

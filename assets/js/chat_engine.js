@@ -1,5 +1,6 @@
 let chatArea = $('.mesgs');
 
+// chat class to connect with socket.io
 class chatEngine {
     constructor(chatRoom, userEmail, id) {
         this.chatBox = $('#user-chat-box');
@@ -7,7 +8,7 @@ class chatEngine {
         this.userEmail = userEmail;
         this.userId = id;
 
-        this.socket = io.connect('http://localhost:5000'); 
+        this.socket = io.connect('http://localhost:5000'); // { error : getting multiple connect requests }
 
         if (this.userEmail) {
             this.connectionHandler();
@@ -69,7 +70,7 @@ class chatEngine {
 
             if (messageType === 'self-message') {
                 // self - message
-                $('#chat-messages-list').append(`<div class="outgoing_msg">
+                $(`#chat-messages-list-${self.chatRoom}`).append(`<div class="outgoing_msg">
                 <div class="sent_msg">
                    <p>${data.message}</p>
                 </div>
@@ -77,7 +78,7 @@ class chatEngine {
             }
             else {
                 // other user message
-                $('#chat-messages-list').append(`<div class="incoming_msg">
+                $(`#chat-messages-list-${self.chatRoom}`).append(`<div class="incoming_msg">
                 <div class="incoming_msg_img"> <img src="https://ptetutorials.com/images/user-profile.png"
                       alt="user">
                 </div>
@@ -93,6 +94,7 @@ class chatEngine {
 
 }
 
+// construct ROOM for Chat
 function constructChatROOM(chatRoom, user){
 
     return `
@@ -131,7 +133,7 @@ function constructChatROOM(chatRoom, user){
     `
 }
 
-
+// handle clicks on each chatroom present in the list
 $('.chat_ib a').each(function(){
     let self = this;
 

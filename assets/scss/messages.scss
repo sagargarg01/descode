@@ -1,7 +1,5 @@
 #layout-main{
   background-color: #eeeeee;
-  height: 75vh !important;
-  min-height: 75vh !important;
 }
 
 .container-msg{
@@ -16,6 +14,7 @@ img{
 .inbox_msg{
   display: flex;
   flex-wrap: nowrap;
+  height: 80vh;
 }
 
 .inbox_people {
@@ -79,7 +78,7 @@ img{
 }
 
 .inbox_chat {
-   height: 57vh; 
+   height: 72vh; 
    overflow-y: scroll;
 }
 
@@ -121,7 +120,7 @@ img{
 .mesgs {
   padding: 30px 15px 0 25px;
   background: white;
-  width: 60%;
+  width: 70%;
   position: relative;
 }
 
@@ -197,7 +196,7 @@ img{
 }
 
 .msg_history {
-  height: 57vh;
+  height: 65vh;
   overflow-y: auto;
 }
 
