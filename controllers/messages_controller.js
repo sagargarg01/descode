@@ -1,12 +1,21 @@
-const ChatBox = require('../models/chat_room');
-const chats = require('../models/chats');
 const User = require('../models/user');
+const ChatRoom = require('../models/chat_room');
 
-module.exports.userChats = function(req, res){
+module.exports.userChats = async function(req, res){
 
-   return res.render('messages',{
-      title: "Messages"
-   });
+   try {
+      
+      let friendList = await User.find({friendships: req.user.id});
+
+      return res.render('messages',{
+         title: "Messages",
+         friendList
+      });
+
+   } catch (error) {
+      console.log('error', error);
+      return res.redirect('back');
+   }
 }
 
 
@@ -14,22 +23,29 @@ module.exports.chatRoom = async function(req, res){
 
    try {
       if(req.xhr){
-         let user = await User.findById(req.query.user);
-      let name = req.query.chatroom;
-      let chatRoom = await ChatBox.findOne({name : name}).populate('messages');
-   
-      if(chatRoom){}
-      else{
-         // chatRoom doesnt exist -> create a new one
-         chatRoom =  await ChatBox.create({
-            name: name
+      let user = await User.findById(req.query.user);
+      let friend = await User.findById(req.query.friend);
+      // find chatroom
+      let chatRoom;
+
+      chatRoom = await ChatRoom.findOne({user1: user._id, user2: friend._id}).populate('messages');
+      if(chatRoom == undefined){chatRoom = await ChatRoom.findOne({user1: friend._id, user2: user._id}).populate('messages');}
+
+      if(chatRoom == undefined){
+         // chatroom doesnt exist
+         // create chatroom
+         chatRoom = ChatRoom.create({
+            user1: user._id,
+            user2: friend._id
          });
+
+         console.log('chatroom created', chatRoom);
       }
    
       return res.status(200).json({
          data: {
-            chatRoom : chatRoom,
-            user: user
+            chatRoom,
+            user
          },
          message: "SUCCESS"
       }); 

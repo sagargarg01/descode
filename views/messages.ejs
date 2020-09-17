@@ -13,33 +13,25 @@ rel="stylesheet">
             </div>
          </div>
          <div class="inbox_chat">
-            <div class="chat_list active_chat">
-               <div class="chat_people">
-                  <div> <img src="https://ptetutorials.com/images/user-profile.png" alt="sunil">
-                  </div>
-                  <div class="chat_ib">
-                     <a href="/messages/chatroom/?chatroom=chatroom1&user=<%= locals.user.id %>"><h5>Common Chat Room 1</h5></a>
-                  </div> 
-               </div>
-            </div>
-            <div class="chat_list active_chat">
-               <div class="chat_people">
-                  <div> <img src="https://ptetutorials.com/images/user-profile.png" alt="sunil">
-                  </div>
-                  <div class="chat_ib">
-                     <a href="/messages/chatroom/?chatroom=chatroom2&user=<%= locals.user.id %>"><h5>Common Chat Room 2</h5></a>
-                  </div>
-               </div>
-            </div>
-            <div class="chat_list active_chat">
-               <div class="chat_people">
-                  <div> <img src="https://ptetutorials.com/images/user-profile.png" alt="sunil">
-                  </div>
-                  <div class="chat_ib">
-                     <a href="/messages/chatroom/?chatroom=chatroom3&user=<%= locals.user.id %>"><h5>Common Chat Room 3</h5></a>
+
+            <% for(let friend of friendList){ %>
+
+               <div class="chat_list active_chat">
+                  <div class="chat_people">
+                     <div>  
+                        <% if(friend.avatar){ %>
+                        <img class="rounded-circle" width="45" height="45" src="<%= friend.avatar %>" alt="">
+                        <% } else{ %>
+                        <img class="rounded-circle" width="45" src="<%= assetPath('images/no_profile.jpg') %>" alt="">
+                        <% } %>
+                     </div>
+                     <div class="chat_ib">
+                        <a href="/messages/chatroom/?friend=<%=friend._id%>&user=<%= locals.user.id %>"><h5> <%= friend.name %></h5></a>
+                     </div> 
                   </div>
                </div>
-            </div>
+
+            <% } %>
          </div>
       </div>
 

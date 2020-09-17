@@ -30,7 +30,7 @@ const userSchema = new mongoose.Schema({
     chatroomlist: [
         {
             type: mongoose.Schema.Types.ObjectId,
-            ref:'ChatBox'
+            ref:'ChatRoom'
         }
     ],
     verifyUser: {

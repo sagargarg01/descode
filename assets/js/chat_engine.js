@@ -1,76 +1,73 @@
 let chatArea = $('.mesgs');
+var chatList = [];
+var userEmail;
+var chatRoom;
+var userId;
 
-// chat class to connect with socket.io
-class chatEngine {
-    constructor(chatRoom, userEmail, id) {
-        this.chatBox = $('#user-chat-box');
-        this.chatRoom = chatRoom;
-        this.userEmail = userEmail;
-        this.userId = id;
+var socket = io.connect('http://localhost:5000'); 
+// socket.on('connect', function () {
+//     console.log('connection established using sockets...!');
+// });
 
-        this.socket = io.connect('http://localhost:5000'); // { error : getting multiple connect requests }
+var checkAndAssignRoom = () => {
 
-        if (this.userEmail) {
-            this.connectionHandler();
-        }
-
+    if(!chatList.includes(chatRoom)){
+        joinRoom();
+        chatList.push(chatRoom);
     }
+    messageSending();
+}
 
-    connectionHandler() {
-        let self = this;
-
-        this.socket.on('connect', function () {
-            console.log('connection established using sockets...!');
-
-            self.socket.emit('join_room', {
-                user_email: self.userEmail,
-                chatroom: self.chatRoom
-            });
-
-            self.socket.on('user_joined', function (data) {
-                // $('#chat-messages-list').append(`<div> new user joined ${data.user_email} </div>`)
-                console.log('a user joined!', data);
-            })
-
+    var joinRoom = () => {
+        socket.emit('join_room', {
+            user_email: userEmail,
+            chatroom: chatRoom
         });
+    }
+    
+    // socket.on('user_joined', function (data) {
+    //      console.log('a user joined!', data);
+    // });
 
+    var messageSending = () => {
         function sendMessage() {
-            console.log('i am here');
             let msg = $('#chat-message-input').val();
 
             if (msg != '') {
-                self.socket.emit('send_message', {
+                socket.emit('send_message', {
                     message: msg,
-                    user_id: self.userId,
-                    user_email: self.userEmail,
-                    chatroom: self.chatRoom
-                });
+                    user_id: userId,
+                    user_email: userEmail,
+                    chatroom: chatRoom
+                    });
+                }
+                $('#chat-message-input').val('');
             }
-            $('#chat-message-input').val('');
-        }
 
-        // CHANGE :: send a message on clicking the send message button
-        $('#send-message').click(sendMessage);
+            // CHANGE :: send a message on clicking the send message button
+            $('#send-message').click(sendMessage);
 
-        $('input').keydown(function(event){
-            if(event.which === 13 && event.shiftKey == false){
-                sendMessage();
-                event.preventDefault();
-            }
-        })
+            $('input').keydown(function(event){
+                if(event.which === 13 && event.shiftKey == false){
+                    sendMessage();
+                    event.preventDefault();
+                }
+            });
+    }
+    
 
-        self.socket.on('receive_message', function (data) {
-            console.log('message received', data);
+        socket.on('receive_message', function (data) {
+            // console.log('message received', data);
 
             let messageType = 'other-message';
 
-            if (data.user_email == self.userEmail) {
+            if (data.user_email == userEmail) {
                 messageType = 'self-message';
             }
 
             if (messageType === 'self-message') {
                 // self - message
-                $(`#chat-messages-list-${self.chatRoom}`).append(`<div class="outgoing_msg">
+                $(`#chat-messages-list-${chatRoom}`).append(`<div class="outgoing_msg">
                 <div class="sent_msg">
                    <p>${data.message}</p>
                 </div>
@@ -78,7 +75,7 @@ class chatEngine {
             }
             else {
                 // other user message
-                $(`#chat-messages-list-${self.chatRoom}`).append(`<div class="incoming_msg">
+                $(`#chat-messages-list-${chatRoom}`).append(`<div class="incoming_msg">
                 <div class="incoming_msg_img"> <img src="https://ptetutorials.com/images/user-profile.png"
                       alt="user">
                 </div>
@@ -90,9 +87,6 @@ class chatEngine {
              </div>`)
             }
         })
-    }
-
-}
 
 // construct ROOM for Chat
 function constructChatROOM(chatRoom, user){
@@ -145,13 +139,15 @@ $('.chat_ib a').each(function(){
             url: $(self).prop('href'),
             success: function(data){
     
-               console.log(data);
                let room = constructChatROOM(data.data.chatRoom, data.data.user);
                chatArea.empty();
                chatArea.append(room);
-              
-               new chatEngine(data.data.chatRoom._id, data.data.user.email, data.data.user._id);
-               
+
+               chatRoom = data.data.chatRoom._id;
+               userEmail = data.data.user.email;
+               userId = data.data.user._id;
+               checkAndAssignRoom();
+                             
             },
             error: function (error) {
                 console.log(error.responseText);
