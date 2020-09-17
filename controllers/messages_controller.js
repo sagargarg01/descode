@@ -5,11 +5,12 @@ module.exports.userChats = async function(req, res){
 
    try {
       
-      let friendList = await User.find({friendships: req.user.id});
+      let friendList = await User.findById(req.user.id).populate('friendships', 'name email avatar');
+      console.log(friendList);
 
       return res.render('messages',{
          title: "Messages",
-         friendList
+         friendList: friendList.friendships
       });
 
    } catch (error) {
