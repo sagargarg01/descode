@@ -16,7 +16,7 @@ rel="stylesheet">
 
             <% for(let friend of friendList){ %>
 
-               <div class="chat_list active_chat">
+               <div class="chat_list" id="friend-<%=friend._id%>" data-friendid="<%= friend._id%>">
                   <div class="chat_people">
                      <div>  
                         <% if(friend.avatar){ %>
@@ -26,7 +26,7 @@ rel="stylesheet">
                         <% } %>
                      </div>
                      <div class="chat_ib">
-                        <a href="/messages/chatroom/?friend=<%=friend._id%>&user=<%= locals.user.id %>"><h5> <%= friend.name %></h5></a>
+                        <h5> <%= friend.name %></h5>
                      </div> 
                   </div>
                </div>

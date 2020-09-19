@@ -6,7 +6,6 @@ module.exports.userChats = async function(req, res){
    try {
       
       let friendList = await User.findById(req.user.id).populate('friendships', 'name email avatar');
-      console.log(friendList);
 
       return res.render('messages',{
          title: "Messages",
@@ -24,7 +23,7 @@ module.exports.chatRoom = async function(req, res){
 
    try {
       if(req.xhr){
-      let user = await User.findById(req.query.user);
+      let user = await User.findById(req.user._id);
       let friend = await User.findById(req.query.friend);
       // find chatroom
       let chatRoom;
@@ -39,8 +38,6 @@ module.exports.chatRoom = async function(req, res){
             user1: user._id,
             user2: friend._id
          });
-
-         console.log('chatroom created', chatRoom);
       }
    
       return res.status(200).json({

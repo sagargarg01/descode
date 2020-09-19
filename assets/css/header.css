@@ -10,21 +10,22 @@ header {
     left: 23%; }
     header .search_conatiner .search_bar {
       background: white;
-      border: 1px solid black;
       border-radius: 15px;
       border-bottom: none;
       height: 100%; }
       header .search_conatiner .search_bar i {
         color: darkgray;
         position: absolute;
-        top: 9.5px;
+        top: 7px;
         left: 7px; }
       header .search_conatiner .search_bar input {
         border-radius: 15px;
         padding: 15px;
         padding-left: 30px; }
       header .search_conatiner .search_bar input:focus {
-        outline: none; }
+        outline: none;
+        border: 1px solid black;
+        border-bottom: none; }
       header .search_conatiner .search_bar .search_input {
         width: 100%;
         height: 100%;
@@ -80,6 +81,16 @@ header {
       margin-top: 16px;
       margin-right: 10px;
       font-family: Arial, Helvetica, sans-serif; }
+      header .inner .head-container .s_icon {
+        background: transparent;
+        border: none;
+        border-radius: 50%;
+        color: white;
+        display: none; }
+      header .inner .head-container .s_icon:hover {
+        cursor: pointer; }
+      header .inner .head-container .s_icon:focus {
+        outline: none; }
       header .inner .head-container .chaticon {
         padding-top: 5px;
         padding-right: 5px; }
@@ -97,6 +108,14 @@ header {
   header .bar {
     height: 25px;
     background-color: #eeeeee; }
+
+@media only screen and (max-width: 800px) {
+  .search_conatiner {
+    top: 65px !important;
+    left: 2% !important;
+    width: 95% !important; }
+  .head-container .s_icon {
+    display: block !important; } }
 
 @media only screen and (max-width: 420px) {
   .inner {

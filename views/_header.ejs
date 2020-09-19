@@ -6,7 +6,8 @@
         </div>
 
         <% if(locals.user){ %>
-            <div class="search_conatiner">
+
+            <div class="search_conatiner" id="searchContainer">
                 <div class="search_bar">
                     <i class="fas fa-search"></i>
                     <input type="search" name="search" class="search_input" placeholder="Seach Descode" autocomplete="off">
@@ -38,6 +39,9 @@
         <div class="head-container">
 
             <% if(locals.user.verifyUser === true){ %>
+            <button class="s_icon" data-toggle="collapse" data-target="#searchContainer" aria-expanded="false" aria-controls="searchContainer">
+                <i class="fas fa-search"></i>
+            </button>
             <div class="text chaticon">
                 <a href="/messages/allchats" style="color: white;">
                     <i class="far fa-comment-alt"></i>

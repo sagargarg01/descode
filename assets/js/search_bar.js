@@ -39,3 +39,19 @@ $(document).mouseup(function(e){
    }
 })
 
+// ------------- styling ----------------
+
+var adjustBar = () => {
+   var windowWith = $(window).width();
+   if(windowWith < 785){
+      $('#searchContainer').addClass('collapse');
+   }   
+   if(windowWith > 790){
+      $('#searchContainer').removeClass('collapse');
+   }
+}
+adjustBar();
+
+$(window).resize(function(){
+  adjustBar();
+})

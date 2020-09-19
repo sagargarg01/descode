@@ -127,16 +127,24 @@ function constructChatROOM(chatRoom, user){
     `
 }
 
-// handle clicks on each chatroom present in the list
-$('.chat_ib a').each(function(){
-    let self = this;
+function highLightBox(friendId){
+    // first remove highlight from previous
+    $('.inbox_chat > div').removeClass('active_chat');
 
-    $(this).click(function(e){
-        e.preventDefault();
+    // hightlight current friendbox
+    $(`#friend-${friendId}`).addClass('active_chat');
+}
+
+// handle clicks on each chatroom present in the list
+$('.chat_list').each(function(){
+
+    $(this).click(function(){
+        let friendID = $(this).attr('data-friendid')
+        highLightBox(friendID);
 
         $.ajax({
             type:'get',
-            url: $(self).prop('href'),
+            url:  `/messages/chatroom/?friend=${friendID}`,
             success: function(data){
     
                let room = constructChatROOM(data.data.chatRoom, data.data.user);
@@ -155,3 +163,4 @@ $('.chat_ib a').each(function(){
         })
     })
 });
+
