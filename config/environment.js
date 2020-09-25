@@ -69,5 +69,5 @@ const production = {
     }
 }
 
-console.log(eval(process.env.DESCODE_ENVIRONMENT) ? process.env.DESCODE_ENVIRONMENT : development);
-module.exports = eval(process.env.DESCODE_ENVIRONMENT) ? process.env.DESCODE_ENVIRONMENT : development;
+console.log(eval(process.env.DESCODE_ENVIRONMENT) ? process.env.DESCODE_ENVIRONMENT : 'development');
+module.exports = eval(process.env.DESCODE_ENVIRONMENT) ? production : development;
