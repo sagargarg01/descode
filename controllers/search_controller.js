@@ -5,7 +5,7 @@ module.exports.searchUser = async function(req, res){
    let username = req.query.name;
    console.log(typeof(username))
    if(username != ''){
-      let user = await User.find({name : username});
+      let user = await User.find({name : username}).populate('name email avatar');
       console.log('user',user)
    }
    console.log(username);
