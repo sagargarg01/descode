@@ -135,12 +135,25 @@ function highLightBox(friendId){
     $(`#friend-${friendId}`).addClass('active_chat');
 }
 
+function hideList(){
+    if(window.innerWidth <= 420){
+        $('.back_button').css('display', 'block');
+        $('.inbox_people').css('display', 'none');
+    }
+}
+
+$('.back_button').click(function(){
+    $('.inbox_people').css('display', 'block');
+    $('.back_button').css('display', 'none');
+})
+
 // handle clicks on each chatroom present in the list
 $('.chat_list').each(function(){
 
     $(this).click(function(){
         let friendID = $(this).attr('data-friendid')
         highLightBox(friendID);
+        hideList();
 
         $.ajax({
             type:'get',

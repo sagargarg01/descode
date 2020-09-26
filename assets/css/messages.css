@@ -1,9 +1,9 @@
 #layout-main {
   background-color: #eeeeee; }
 
-.container-msg {
-  width: 98.5vw;
-  padding: 5px; }
+.container {
+  width: 100vw;
+  padding: 2px; }
 
 img {
   max-width: 40px; }
@@ -11,17 +11,16 @@ img {
 .inbox_msg {
   display: flex;
   flex-wrap: nowrap;
-  height: 80vh; }
+  height: 80vh;
+  border: 1px solid #c4c4c4;
+  overflow: hidden;
+  position: relative; }
 
 .inbox_people {
   background: #f8f8f8;
   overflow: hidden;
   width: 30%;
   border-right: 1px solid #c4c4c4; }
-
-.inbox_msg {
-  border: 1px solid #c4c4c4;
-  overflow: hidden; }
 
 .top_spac {
   margin: 20px 0 0; }
@@ -106,7 +105,9 @@ img {
   position: relative; }
 
 .msg_history {
-  overflow-x: scroll; }
+  overflow-x: scroll;
+  height: 65vh;
+  overflow-y: auto; }
 
 .msg_history::-webkit-scrollbar {
   display: none; }
@@ -165,19 +166,35 @@ img {
 .messaging {
   padding: 25px 0 0 0; }
 
-.msg_history {
-  height: 65vh;
-  overflow-y: auto; }
+.back_button {
+  position: absolute;
+  top: 5px;
+  left: 5px;
+  color: #05728f;
+  display: none;
+  z-index: 1; }
+  .back_button i {
+    font-size: xx-large; }
+
+@media only screen and (min-width: 430px) {
+  .inbox_people {
+    display: block !important; }
+  .back_button {
+    display: none !important; } }
 
 @media only screen and (max-width: 420px) {
   .messaging {
-    padding-top: 15px; }
+    padding-top: 8px; }
     .messaging .inbox_msg {
-      height: 72vh; }
-  .msg_history {
-    height: 62vh; }
+      height: 90vh; }
+    .messaging .msg_history {
+      height: 80vh; }
   .inbox_people {
-    display: none; }
+    position: absolute;
+    z-index: 2;
+    width: 100vw;
+    height: 90vh;
+    border-bottom: 1px solid grey; }
   .mesgs {
     width: 100%;
     padding-top: 15px !important; }
