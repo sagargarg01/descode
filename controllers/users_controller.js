@@ -64,8 +64,6 @@ module.exports.update = async function (req, res) {
                 if (err) { console.log('***multer error', err); return; }
 
                 user.name = req.body.name;
-                user.email = req.body.email;
-                console.log(req.file);
 
                 if (req.file) {
 
