@@ -1,0 +1,33 @@
+li {
+  list-style: none;
+  margin-top: 10px; }
+  li .post {
+    max-width: 550px; }
+  li .coment-cont {
+    position: relative; }
+    li .coment-cont .c-input {
+      width: 80%;
+      min-height: 60px;
+      display: inline-block; }
+    li .coment-cont .s-btn {
+      width: 15%;
+      position: absolute;
+      right: 5px;
+      top: 10px; }
+  li .dropdown-toggle::after {
+    content: none;
+    display: none; }
+  li .small {
+    font-size: x-small !important; }
+  li .card-post {
+    padding-bottom: 10px !important;
+    padding-top: 10px !important; }
+    li .card-post .post-content {
+      white-space: pre-line; }
+    li .card-post .comments {
+      float: right;
+      margin-right: 10px; }
+
+@media only screen and (max-width: 320px) {
+  .email {
+    font-size: small; } }

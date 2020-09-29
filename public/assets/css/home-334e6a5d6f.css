@@ -63,13 +63,18 @@
       #home-container .empty .friendlist .length {
         text-transform: lowercase;
         float: right; }
-  #home-container .txt-a1 {
-    white-space: pre-wrap;
-    overflow-wrap: break-word; }
   #home-container .posts {
-    max-width: 500px; }
+    max-width: 450px; }
     #home-container .posts .posts-size {
-      max-width: 500px; }
+      width: 450px; }
+  #home-container .img {
+    margin: auto;
+    margin-top: 20px;
+    width: 70%;
+    display: flex; }
+    #home-container .img img {
+      height: 100%;
+      width: 100%; }
   #home-container #user-friends {
     text-transform: capitalize;
     width: 30%;
