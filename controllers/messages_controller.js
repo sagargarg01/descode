@@ -50,7 +50,7 @@ module.exports.chatRoom = async function(req, res){
       if(chatRoom == undefined){
          // chatroom doesnt exist
          // create chatroom
-         chatRoom = ChatRoom.create({
+         chatRoom = await ChatRoom.create({
             user1: user._id,
             user2: friend._id
          });
