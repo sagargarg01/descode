@@ -6,14 +6,14 @@ module.exports.chatSockets = async function(socketServer){
     let io = require('socket.io')(socketServer);
     
     io.sockets.on('connection', function(socket){
-        console.log('new connection recieved', socket.id);
+        // console.log('new connection recieved', socket.id);
 
         socket.on('join_room', async function(data){
-                console.log('joining request received', data.chatroom);
+          // console.log('joining request received', data.chatroom);
 
-                  room = await ChatRoom.findById(data.chatroom);
-                  socket.join(data.chatroom);
-                  io.in(data.chatroom).emit('user_joined', data);
+          room = await ChatRoom.findById(data.chatroom);
+          socket.join(data.chatroom);
+          io.in(data.chatroom).emit('user_joined', data);
         });
 
         socket.on("send_message", async function (data) {

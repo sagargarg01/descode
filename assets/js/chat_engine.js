@@ -1,8 +1,9 @@
-let chatArea = $('.mesgs');
+let chatArea = $('.message_box_container');
 var chatList = [];
 var userEmail;
-var chatRoom;
+var currentChatRoom;
 var userId;
+var otherUser;
 
 var socket = io.connect('http://localhost:5000'); 
 // socket.on('connect', function () {
@@ -10,10 +11,9 @@ var socket = io.connect('http://localhost:5000');
 // });
 
 var checkAndAssignRoom = () => {
-
-    if(!chatList.includes(chatRoom)){
+    if(!chatList.includes(currentChatRoom)){
         joinRoom();
-        chatList.push(chatRoom);
+        chatList.push(currentChatRoom);
     }
     messageSending();
 }
@@ -21,7 +21,7 @@ var checkAndAssignRoom = () => {
     var joinRoom = () => {
         socket.emit('join_room', {
             user_email: userEmail,
-            chatroom: chatRoom
+            chatroom: currentChatRoom
         });
     }
     
@@ -38,7 +38,7 @@ var checkAndAssignRoom = () => {
                     message: msg,
                     user_id: userId,
                     user_email: userEmail,
-                    chatroom: chatRoom
+                    chatroom: currentChatRoom
                     });
                 }
                 $('#chat-message-input').val('');
@@ -57,75 +57,136 @@ var checkAndAssignRoom = () => {
     
 
         socket.on('receive_message', function (data) {
-            // console.log('message received', data);
-
+            let messageList = $(`#chat-messages-list-${currentChatRoom}`);
             let messageType = 'other-message';
+            let {user_email, message} = data;
 
-            if (data.user_email == userEmail) {
+            if (user_email == userEmail) {
                 messageType = 'self-message';
             }
 
+            
+
             if (messageType === 'self-message') {
                 // self - message
-                $(`#chat-messages-list-${chatRoom}`).append(`<div class="outgoing_msg">
-                <div class="sent_msg">
-                   <p>${data.message}</p>
-                </div>
-             </div>`)
+                messageList.append(`
+                    <div class="outgoing_msg">
+                        <div class="sent_msg">
+                            <p>${message}</p>
+                        </div>
+                    </div>`
+                )
             }
             else {
                 // other user message
-                $(`#chat-messages-list-${chatRoom}`).append(`<div class="incoming_msg">
-                <div class="incoming_msg_img"> <img src="https://ptetutorials.com/images/user-profile.png"
-                      alt="user">
-                </div>
-                <div class="received_msg">
-                   <div class="received_withd_msg">
-                      <p>${data.message}</p>
-                   </div>
-                </div>
-             </div>`)
+                messageList.append(`
+                    <div class="incoming_msg">
+                    ${ 
+                        (otherUser.avatar) ? 
+                            `<div class="rounded-circle"> <img src="${otherUser.avatar}" width="40" alt="user"></div>`
+                        : 
+                            `<div class="incoming_msg_img"> <img src="//ptetutorials.com/images/user-profile.png" width="40" alt="user"></div>`
+                    } 
+                        <div class="received_msg">
+                            <div class="received_withd_msg">
+                                <p>${message}</p>
+                            </div>
+                        </div>
+                    </div>`
+                )
             }
         })
 
 // construct ROOM for Chat
-function constructChatROOM(chatRoom, user){
-
+function constructChatROOM(chatRoom, user, friend){
     return `
+        <div class="chat_header">
+            <div class="back_button"><i class="fas fa-chevron-left"></i></div>
+            ${
+                (friend.avatar) 
+                ?  
+                `<div><img class="rounded-circle" width="45" src="${friend.avatar}" alt=""></div>`
+                : 
+                `<div><img class="rounded-circle" width="45" src="//ptetutorials.com/images/user-profile.png" alt=""></div>`
+            }
+            
+            <div class="name">${friend.name}</div>
+        </div>
+        <div class="mesgs">
             <div class="msg_history" id="chat-messages-list-${chatRoom._id}">
             ${chatRoom.messages.map(
               (chat) =>
                 `${
-                  user._id === chat.user
-                    ? `<div class="outgoing_msg">
-                            <div class="sent_msg">
-                                <p>${chat.message}</p>
-                            </div>  
-                        </div>`
-                    : `<div class="incoming_msg">
-                                <div class="incoming_msg_img"> <img src="https://ptetutorials.com/images/user-profile.png"
-                                alt="user">
-                            </div>
+                  (user._id === chat.user)
+                    ? 
+                    `<div class="outgoing_msg">
+                        <div class="sent_msg">
+                            <p>${chat.message}</p>
+                        </div>  
+                    </div>`
+                    : 
+                    `<div class="incoming_msg">
+                        ${ 
+                            (friend.avatar) ? 
+                                `<div class="incoming_msg_img"> <img class="rounded-circle" src="${friend.avatar}" width="40" alt="user"></div>`
+                                    : 
+                                `<div class="incoming_msg_img"> <img src="//ptetutorials.com/images/user-profile.png" width="40" alt="user"></div>`
+                        } 
                             <div class="received_msg">
-                            <div class="received_withd_msg">
-                                <p>          
-                                ${chat.message}
-                                </p>
-                            </div>
+                                <div class="received_withd_msg">
+                                    <p>          
+                                    ${chat.message}
+                                    </p>
+                                </div>
                             </div>
                         </div>`
-                } `
-            ).join('')}
-                </div>
-                <div class="type_msg">
+                } `).join('')
+            }
+            </div>
+            <div class="type_msg">
                 <div class="input_msg_write">
                     <input type="text" id="chat-message-input" class="write_msg" placeholder="Type a message" />
-                    <button class="msg_send_btn" id="send-message" type="submit"><i class="fa fa-paper-plane-o"
-                            aria-hidden="true"></i></button>
+                    <button class="msg_send_btn" id="send-message" type="submit"><i class="fa fa-paper-plane-o"aria-hidden="true"></i></button>
                 </div>
             </div>
-    `
+        </div>`
 }
+
+// handle clicks on each chatroom present in the list
+$('.chat_list').each(function(){
+
+    $(this).click(function(){
+        let friendID = $(this).attr('data-friendid')
+        highLightBox(friendID);
+
+        $.ajax({
+            type:'get',
+            url:  `/messages/chatroom/?friend=${friendID}`,
+            success: function(data){
+                let {chatRoom, user, friend} = data.data;
+    
+               let room = constructChatROOM(chatRoom, user, friend);
+               chatArea.empty(); // removes previous chat
+               chatArea.append(room); // addIn new Chat
+               hideList();
+               activateBackButton();
+
+               //setting in the variable
+               currentChatRoom = chatRoom._id;
+               userEmail = user.email;
+               userId = user._id;
+               otherUser = friend;
+               checkAndAssignRoom();
+                             
+            },
+            error: function (error) {
+                console.log(error.responseText);
+            }
+        })
+    })
+});
+
+// UI 
 
 function highLightBox(friendId){
     // first remove highlight from previous
@@ -137,43 +198,13 @@ function highLightBox(friendId){
 
 function hideList(){
     if(window.innerWidth <= 420){
-        $('.back_button').css('display', 'block');
         $('.inbox_people').css('display', 'none');
     }
+};
+
+function activateBackButton(){
+    console.log($('.back_button'));
+    $('.back_button').click(function(){
+        $('.inbox_people').css('display', 'block');
+    });
 }
-
-$('.back_button').click(function(){
-    $('.inbox_people').css('display', 'block');
-    $('.back_button').css('display', 'none');
-})
-
-// handle clicks on each chatroom present in the list
-$('.chat_list').each(function(){
-
-    $(this).click(function(){
-        let friendID = $(this).attr('data-friendid')
-        highLightBox(friendID);
-        hideList();
-
-        $.ajax({
-            type:'get',
-            url:  `/messages/chatroom/?friend=${friendID}`,
-            success: function(data){
-    
-               let room = constructChatROOM(data.data.chatRoom, data.data.user);
-               chatArea.empty();
-               chatArea.append(room);
-
-               chatRoom = data.data.chatRoom._id;
-               userEmail = data.data.user.email;
-               userId = data.data.user._id;
-               checkAndAssignRoom();
-                             
-            },
-            error: function (error) {
-                console.log(error.responseText);
-            }
-        })
-    })
-});
-

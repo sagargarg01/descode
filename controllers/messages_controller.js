@@ -24,7 +24,23 @@ module.exports.chatRoom = async function(req, res){
    try {
       if(req.xhr){
       let user = await User.findById(req.user._id);
+      var {_id, name, email, avatar } = user;
+      user = {
+         _id: _id,
+         name : name,
+         email : email,
+         avatar : avatar
+      }
+
       let friend = await User.findById(req.query.friend);
+      var {_id, name, email, avatar } = friend;
+      friend = {
+         _id: _id,
+         name : name,
+         email : email,
+         avatar : avatar
+      }
+
       // find chatroom
       let chatRoom;
 
@@ -43,7 +59,8 @@ module.exports.chatRoom = async function(req, res){
       return res.status(200).json({
          data: {
             chatRoom,
-            user
+            user,
+            friend
          },
          message: "SUCCESS"
       }); 
