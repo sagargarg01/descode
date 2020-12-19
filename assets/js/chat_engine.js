@@ -5,7 +5,7 @@ var currentChatRoom
 var userId
 var otherUser
 
-var socket = io.connect('http://localhost:5000')
+var socket = io.connect('http://174.129.49.196:5000')
 // socket.on('connect', function () {
 //     console.log('connection established using sockets...!');
 // });
